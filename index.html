@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Wesleyan University Course Prerequisites</title>
+    <style type="text/css">
+
+body {
+  font: 10px sans-serif;
+}
+
+path.chord {
+  fill-opacity: .67;
+}
+
+#circle:hover path.fade {
+  display: none;
+}
+
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+    <script type="text/javascript">
+
+var r1 = 960 / 2,
+    r0 = r1 - 120;
+
+var fill = d3.scale.category10();
+
+var layout = d3.layout.chord()
+    .padding(.04)
+    .sortSubgroups(d3.descending)
+    .sortChords(d3.ascending);
+
+var arc = d3.svg.arc()
+    .innerRadius(r0)
+    .outerRadius(r0 + 20);
+
+var svg = d3.select("body").append("svg:svg")
+    .attr("width", r1 * 2)
+    .attr("height", r1 * 2)
+  .append("g")
+    .attr("id", "circle")
+    .attr("transform", "translate(" + r1 + "," + r1 + ")");
+
+d3.csv("Data/Departments.csv", function(departments) {
+  d3.json("Data/Prerequisites.json", function(matrix) {
+
+    // Compute the chord layout.
+    layout.matrix(matrix);
+
+    // Add a group per department.
+    var g = svg.selectAll("g.group")
+        .data(layout.groups)
+      .enter().append("g")
+        .attr("class", "group")
+        .on("mouseover", mouseover);
+
+    // Add a mouseover title.
+    g.append("title").text(function(d, i) { return departments[i].name });
+
+    // Add the department arc.
+    g.append("path")
+        .style("fill", function(d, i) { return fill(departments[i].division); })
+        .style("stroke", function(d, i) { return fill(departments[i].division); })
+        .attr("d", arc);
+
+    // Add the department text labels.
+    g.append("text")
+        .each(function(d) { d.angle = (d.startAngle + d.endAngle) / 2; })
+        .attr("dy", ".35em")
+        .attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
+        .attr("transform", function(d) {
+          return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
+              + "translate(" + (r0 + 26) + ")"
+              + (d.angle > Math.PI ? "rotate(180)" : "");
+        })
+        .text(function(d, i) { return departments[i].department; });
+
+    // Add the chords.
+    var chord = svg.selectAll(".chord")
+        .data(layout.chords)
+      .enter().append("path")
+        .attr("class", "chord")
+        .style("stroke", function(d) { return d3.rgb(fill(departments[d.source.index].division)).darker(); })
+        .style("fill", function(d) { return fill(departments[d.source.index].division); })
+        .attr("d", d3.svg.chord().radius(r0));
+
+    // Add an elaborate mouseover title for each chord.
+    chord.append("title").text(function(d) {
+      var prerequisite = "prerequisite";
+      if (d.source.value > 1) { prerequisite += "s"; }
+      return "Courses in the "
+          + departments[d.source.index].name
+          + " department have " + d.source.value
+          + " " + prerequisite + " in the "
+          + departments[d.target.index].name
+          + " department";
+    });
+
+    function mouseover(d, i) {
+      chord.classed("fade", function(p) {
+        return p.source.index != i
+            && p.target.index != i;
+      });
+    }
+  });
+});
+
+    </script>
+  </body>
+</html>

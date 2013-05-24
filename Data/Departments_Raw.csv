@@ -1,0 +1,66 @@
+department,name,division
+AFAM,African American Studies Program,INT
+ALIT,Asian Languages and Literature,HUM
+ANTH,Anthropology,SBS
+ARAB,Arabic,HUM
+ARST,Arab Studies,HUM
+ASTR,Astronomy,NSM
+BIOL,Biology,NSM
+CHEM,Chemistry,NSM
+CHIN,Chinese,HUM
+COL,College of Letters,HUM
+COMP,Computer Science,NSM
+DANC,Dance,HUM
+EAST,East Asian Studies Program,INT
+ECON,Economics,SBS
+EES,Earth and Environmental Sciences,NSM
+ENGL,English,HUM
+ENVS,Environmental Studies Program,INT
+FILM,Film Studies,HUM
+FREN,French,HUM
+GOVT,Government,SBS
+GRK,Greek,HUM
+GRST,German Studies,HUM
+HEBR,Hebrew,HUM
+ITAL,Italian Studies,HUM
+JAPN,Japanese,HUM
+KREA,Korean,HUM
+LANG,Less Commonly Taught Languages,HUM
+LAT,Latin,HUM
+MATH,Mathematics,NSM
+MBB,Molecular Biology and Biochemistry,NSM
+MUSC,Music,HUM
+NSB,Neuroscience and Behavior,NSM
+PHIL,Philosophy,SBS
+PHYS,Physics,NSM
+PORT,Portuguese,HUM
+PSYC,Psychology,NSM
+QAC,Quantitative Analysis Center,INT
+REES,"Russian, East European, and Eurasian Studies Program",INT
+RULE,Russian Literature in English,HUM
+RUSS,Russian,HUM
+SOC,Sociology,SBS
+SPAN,Spanish,HUM
+THEA,Theater,HUM
+AMST,American Studies,SBS
+CEC,Civic Engagement,CER
+CES,Environmental Studies,CER
+CIM,Informatics and Modeling,CER
+CIR,International Relations,CER
+CJS,Informatics and Modeling,CER
+CMB,Informatics and Modeling,CER
+CMES,Informatics and Modeling,CER
+COE,College of the Environment,INT
+CSA,College of the Environment,CER
+CSCT,"Social, Cultural and Critical Theory",CER
+CSED,The Study of Education,CER
+CWRC,Writing,CER
+LAST,Latin American Studies Program,INT
+MECO,Mathematics-Economics Program,INT
+RELI,Religion,SBS
+SISP,Science in Society Program,INT
+XAFS,African Studies,CLU
+XDST,Disability Studies,CLU
+XPSC,Planetary Science,CLU
+XSER,Service-Learning,CLU
+XURS,Urban Studies,CLU
